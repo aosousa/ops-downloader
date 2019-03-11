@@ -20,6 +20,6 @@ func main() {
 	}*/
 
 	router := NewRouter()
-	fmt.Println("Serving on port 8081")
-	http.ListenAndServe(":8081", router)
+	fmt.Println("Serving on port 80")
+	http.ListenAndServe(":80", router)
 }

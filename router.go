@@ -21,7 +21,11 @@ func NewRouter() *mux.Router {
 }
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
+	crcToken := mux.Vars(r)["crc_token"]
 
+	hash := generateHMACHash(config.APISecret, crcToken)
+	setResponse(w, models.TwitterResponse{ResponseToken: hash})
+	return
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
