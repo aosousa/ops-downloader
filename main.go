@@ -20,6 +20,10 @@ func main() {
 	}*/
 
 	router := NewRouter()
-	fmt.Println("Serving on port 80")
-	http.ListenAndServe(":80", router)
+	fmt.Println("Serving on port 443")
+	err := http.ListenAndServeTLS(":443", "server.crt", "server.key", router)
+	if err != nil {
+		fmt.Println(err)
+	}
+	// http.ListenAndServe(":80", router)
 }

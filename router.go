@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -14,13 +15,14 @@ import (
  */
 func NewRouter() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/webhooks/twitter", handleWebhook).Methods("GET")
+	router.HandleFunc("/webhooks/twitter", handleWebhook).Methods("GET", "POST")
 	router.HandleFunc("/test", test).Methods("GET", "POST")
 
 	return router
 }
 
 func handleWebhook(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("CALLED WEBHOOK")
 	crcToken := mux.Vars(r)["crc_token"]
 
 	hash := generateHMACHash(config.APISecret, crcToken)
