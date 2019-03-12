@@ -13,8 +13,10 @@ import (
  * APISecret (string) - Twitter application API secret
  */
 type Config struct {
-	APIKey    string `json:"apiKey"`
-	APISecret string `json:"apiSecret"`
+	APIKey            string `json:"apiKey"`
+	APISecret         string `json:"apiSecret"`
+	AccessToken       string `json:"accessToken"`
+	AccessTokenSecret string `json:"accessTokenSecret"`
 }
 
 /*CreateConfig adds information from a configuration file to a Config struct. Returns:
