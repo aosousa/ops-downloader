@@ -17,6 +17,7 @@ type Config struct {
 	APISecret         string `json:"apiSecret"`
 	AccessToken       string `json:"accessToken"`
 	AccessTokenSecret string `json:"accessTokenSecret"`
+	SinceID           string `json:"sinceId"`
 }
 
 /*CreateConfig adds information from a configuration file to a Config struct. Returns:
@@ -37,4 +38,10 @@ func CreateConfig() Config {
 	}
 
 	return config
+}
+
+// Save saves the Config struct into config.json file
+func (c Config) Save() {
+	file, _ := json.MarshalIndent(c, "", " ")
+	_ = ioutil.WriteFile("config.json", file, 0644)
 }

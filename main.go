@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/url"
+	"strconv"
 
 	"github.com/ChimeraCoder/anaconda"
 
@@ -22,7 +23,7 @@ func main() {
 	// set URL params
 	urlParams := url.Values{}
 	urlParams.Set("screen_name", "OnePerfectShot")
-	urlParams.Set("count", "30")
+	urlParams.Set("since_id", config.SinceID)
 
 	// get tweets
 	result, err := api.GetUserTimeline(urlParams)
@@ -32,5 +33,10 @@ func main() {
 
 	for _, tweet := range result {
 		fmt.Println(tweet.Entities.Media)
+	}
+
+	if len(result) > 0 {
+		config.SinceID = strconv.Itoa(int(result[0].Id))
+		config.Save()
 	}
 }
