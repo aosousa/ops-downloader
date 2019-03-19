@@ -16,7 +16,7 @@ func initConfig() {
 
 // DownloadImage will download a url to a local file.
 // https://golangcode.com/download-a-file-from-a-url/
-func DownloadImage(filepath string, url string) error {
+func downloadImage(filepath string, url string) error {
 	// get the image
 	res, err := http.Get(url)
 	if err != nil {

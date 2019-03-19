@@ -11,6 +11,10 @@ import (
 /*Config struct contains all the necessary configurations for the application to run. Contains:
  * APIKey (string) - Twitter application API key
  * APISecret (string) - Twitter application API secret
+ * AccessToken (string) - Twitter application access token
+ * AccessTokenSecret (string) - Twitter application secret token secret
+ * SinceID (string) - Last Tweet ID returned in the search
+ * OutputFolder (string) - Path where the images should be stored
  */
 type Config struct {
 	APIKey            string `json:"apiKey"`
@@ -18,6 +22,7 @@ type Config struct {
 	AccessToken       string `json:"accessToken"`
 	AccessTokenSecret string `json:"accessTokenSecret"`
 	SinceID           string `json:"sinceId"`
+	OutputFolder      string `json:"outputFolder"`
 }
 
 /*CreateConfig adds information from a configuration file to a Config struct. Returns:
