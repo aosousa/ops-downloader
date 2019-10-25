@@ -13,3 +13,6 @@
 
 # Configuration file
 config.json
+
+# Image extraction dir
+/images

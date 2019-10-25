@@ -24,6 +24,11 @@ func downloadImage(filepath string, url string) error {
 	}
 	defer res.Body.Close()
 
+	// check if directory exists, create it if it doesn't
+	if _, err := os.Stat(config.OutputFolder); os.IsNotExist(err) {
+		os.Mkdir(config.OutputFolder, os.ModeDir)
+	}
+
 	// create the file
 	output, err := os.Create(filepath)
 	if err != nil {

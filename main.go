@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"path/filepath"
 	"strconv"
+	"strings"
 
 	"github.com/ChimeraCoder/anaconda"
 
@@ -39,7 +40,12 @@ func main() {
 		for _, tweet := range tweets {
 			if len(tweet.Entities.Media) > 0 {
 				fileURL = tweet.Entities.Media[0].Media_url
-				fileName = filepath.Base(fileURL)
+				for i, line := range strings.Split(strings.TrimSuffix(tweet.Text, "\n"), "\n") {
+					if i == 0 {
+						fileName = line + "_" + filepath.Base(fileURL)
+					}
+				}
+
 				filePath = config.OutputFolder + fileName
 
 				err = downloadImage(filePath, fileURL)
